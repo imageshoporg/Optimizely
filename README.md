@@ -174,7 +174,8 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
-- **v1.3.0.0** _(02.02.25)_: Add TinyMCE Import Video, back track permalink, bugfix listener
+- **v1.3.1.0** _(08.02.25)_: Add FocalPoint
+- **v1.3.0.0** _(02.02.25)_: Add TinyMCE Import Video, back track permalink, bugfix listener, localization
 - **v1.2.6.2** _(10.12.24)_: bugfixes + new latest jquery version 
 - **v1.2.6** _(31.10.24)_: Localization in Picker, it now uses the context language of import of AltText and other props + new logo in tinymce 
 - **v1.2.5** _(23.10.24)_: Added AltText before Description when display image on site + AddEnvironmentVariables (overrides appsettings in Azure)

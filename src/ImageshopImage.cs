@@ -10,6 +10,7 @@ namespace Imageshop.Optimizely.Plugin
         public virtual int Width { get; set; }
         public virtual int Height { get; set; }
         public virtual string CropName { get; set; }
+        public virtual FocalPoint? FocalPoint { get; set; }
         public virtual string AltText { get; set; }
         public virtual ImageshopImageProfile Profile { get; set; }
         public virtual IEnumerable<ImageshopInterfaceInfo> InterfaceList { get; set; }
@@ -54,5 +55,11 @@ namespace Imageshop.Optimizely.Plugin
         public virtual string CropName { get; set; }
         public virtual string CropFormat { get; set; }
         public virtual string SizeName { get; set; }
-    } 
+    }
+
+    public class FocalPoint
+    {
+        public float X { get; set; } 
+        public float Y { get; set; }
+    }
 }

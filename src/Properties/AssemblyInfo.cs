@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //
 // Update the version number below in both AssemblyVersion and AssemblyFileVersion before publishing an update of the plugin
 // Before publishing a new version, you should also update the version number in the Imageshop.Optimizely.Plugin.nuspec file. These version numbers should be identical.
-[assembly: AssemblyVersion("1.3.0.0")]
-[assembly: AssemblyFileVersion("1.3.0.0")]
+[assembly: AssemblyVersion("1.3.1.0")]
+[assembly: AssemblyFileVersion("1.3.1.0")]

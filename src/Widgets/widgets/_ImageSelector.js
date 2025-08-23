@@ -215,6 +215,7 @@ define([
                         this.currentImage.credits = textData.credits;
                         this.currentImage.description = textData.description;
                         this.currentImage.altText = textData.altText;
+                        this.currentImage.focalPoint = imageData.focalPoint;
                         this.currentImage.rights = textData.rights;
                         this.currentImage.tags = textData.tags;
                     }

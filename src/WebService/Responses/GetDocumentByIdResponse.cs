@@ -24,6 +24,8 @@ namespace Imageshop.Optimizely.Plugin.WebService.Responses
         [XmlElement]
         public string Comment { get; set; }
         [XmlElement]
+        public string FocalPoint { get; set; }
+        [XmlElement]
         public string AuthorName { get; set; }
         [XmlElement]
         public bool IsImage { get; set; }
