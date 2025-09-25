@@ -10,6 +10,12 @@
     <RootNamespace>Imageshop.Optimizely.Plugin</RootNamespace>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Import\imageshop.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Import\imageshop.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS" Version="12.8.0" />

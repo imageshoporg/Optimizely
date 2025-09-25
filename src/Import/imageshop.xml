@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<languages>
+	<language name="Norsk" id="no">
+		<episerver>
+			<cms>
+				<widget>
+					<thumbnailselector>
+						<importimageshoptitle>Importere bild fra Imageshop</importimageshoptitle>
+						<importimageshopdocumenttitle>Importere dokument fra Imageshop</importimageshopdocumenttitle>
+					</thumbnailselector>
+				</widget>
+			</cms>
+		</episerver>
+	</language>
+	<language name="English" id="en">
+		<episerver>
+			<cms>
+				<widget>
+					<thumbnailselector>
+						<importimageshoptitle>Import Image from Imageshop</importimageshoptitle>
+						<importimageshopdocumenttitle>Import Document from Imageshop</importimageshopdocumenttitle>
+					</thumbnailselector>
+				</widget>
+			</cms>
+		</episerver>
+	</language>
+	<language name="Swedish" id="sv">
+		<episerver>
+			<cms>
+				<widget>
+					<thumbnailselector>
+						<importimageshoptitle>Importera bild från Imageshop</importimageshoptitle>
+						<importimageshopdocumenttitle>Importera dokument från Imageshop</importimageshopdocumenttitle>
+					</thumbnailselector>
+				</widget>
+			</cms>
+		</episerver>
+	</language>
+</languages>
