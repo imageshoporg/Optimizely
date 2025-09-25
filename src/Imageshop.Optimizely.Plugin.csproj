@@ -3,7 +3,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>Release;</Configurations>
+    <Configurations>Release;Debug</Configurations>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <NuspecFile>Imageshop.Optimizely.Plugin.nuspec</NuspecFile>

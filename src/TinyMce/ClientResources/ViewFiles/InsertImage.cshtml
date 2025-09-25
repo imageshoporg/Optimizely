@@ -150,8 +150,8 @@
             var showSizeDialog = "@(Model.Settings.ShowSizeDialog.ToString().ToLowerInvariant())";
             var showCropDialog = "@(Model.Settings.ShowCropDialog.ToString().ToLowerInvariant())";
             var freeCrop = "@(Model.Settings.FreeCrop.ToString().ToLowerInvariant())";
-            var interfaceName = "@(HttpUtility.UrlEncode(Model.Settings.InterfaceName))";
-            var documentPrefix = "@(HttpUtility.UrlEncode(Model.Settings.DocumentPrefix))";
+            var interfaceName = "@Html.Raw(HttpUtility.UrlEncode(Model.Settings.InterfaceName))";
+            var documentPrefix = "@Html.Raw(HttpUtility.UrlEncode(Model.Settings.DocumentPrefix))";
             var sizePresets = "@(Uri.EscapeDataString(Model.Settings.FormattedSizePresets))";
 
             var clienthost = "https://client.imageshop.no";

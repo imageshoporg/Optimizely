@@ -46,6 +46,9 @@ namespace Imageshop.Optimizely.Plugin.Configuration
             }
         }
 
+        public bool EnableDownload { get; internal set; }
+        public bool EnableDownloadDocuments { get; internal set; }
+
         public static class UIHint
         {
             public const string ImageshopImage = "ImageshopImage";

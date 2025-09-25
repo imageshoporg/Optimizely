@@ -49,6 +49,8 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                     Token = settingsSection["token"],
                     ShowSizeDialog = bool.Parse(settingsSection["showSizeDialog"]),
                     ShowCropDialog = bool.Parse(settingsSection["showCropDialog"]),
+                    EnableDownload = bool.Parse(settingsSection["enableDownload"]),
+                    EnableDownloadDocuments = bool.Parse(settingsSection["enableDownloadDocuments"]),
                     FreeCrop = bool.Parse(settingsSection["freeCrop"]),
                     InterfaceName = settingsSection["interfaceName"],
                     DocumentPrefix = settingsSection["documentPrefix"],
