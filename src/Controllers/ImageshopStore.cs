@@ -3,6 +3,7 @@ using EPiServer.Shell.Services.Rest;
 using EPiServer.Web;
 using Imageshop.Optimizely.Plugin.Configuration;
 using Imageshop.Optimizely.Plugin.Import;
+using Imageshop.Optimizely.Plugin.Services;
 using Imageshop.Optimizely.Plugin.WebService;
 using Imageshop.Optimizely.Plugin.WebService.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -25,9 +26,12 @@ namespace Imageshop.Optimizely.Plugin.Controllers
     {
         private readonly WebServiceWrapper _webServiceWrapper;
 
-        public ImageshopStore()
+        public IImageshopAssetService ImageshopAssetService { get; }
+
+        public ImageshopStore(IImageshopAssetService imageshopAssetService)
         {
             _webServiceWrapper = new WebServiceWrapper(ImageshopConfigurationSection.Settings.WebServiceUrl!, ImageshopConfigurationSection.Settings.Token!);
+            ImageshopAssetService = imageshopAssetService;
         }
 
         [HttpGet]
@@ -95,15 +99,15 @@ namespace Imageshop.Optimizely.Plugin.Controllers
         /// <returns>Content Reference Id</returns>
         [HttpPost]
         [Route("/imageshopextended/imageshopstore/import")]
-        public async Task<ContentResult> ImportAsync([FromQuery] string parent, [FromBody] JsonElement assetsChosen, [FromQuery] string adminUrl = null)
+        public async Task<ContentResult> ImportAsync([FromQuery] string parent, [FromBody] JsonElement[] assetsChosen, [FromQuery] string adminUrl = null)
         {
 
-            var jsonAsset = assetsChosen.ToString();
+            var jsonAsset = assetsChosen.FirstOrDefault().ToString();
             // Only one asset is chosen
             var asset = JsonSerializer.Deserialize<ImageshopAsset>(jsonAsset); 
 
-            //var cf = await _imageshopAssetService.AddOrUpdateAssetAsync(asset, jsonAsset, parent);
-            return Content("ok");
+            var cf = await ImageshopAssetService.AddOrUpdateAssetAsync(asset, jsonAsset, parent);
+            return Content(cf.ID + "");
 
         }
 
@@ -120,10 +124,12 @@ namespace Imageshop.Optimizely.Plugin.Controllers
 
             //var jsonAsset = assetsChosen.First().ToString();
             // Only one asset is chosen
-            //var asset = JsonSerializer.Deserialize<ImageshopAsset>(jsonAsset);
+            //var asset = JsonSerializer.Deserialize<Imageshop>(jsonAsset);
 
-            //var cf = await _imageshopAssetService.AddOrUpdateAssetAsync(asset, jsonAsset, parent);
-            return Content(parent);
+            var asset = new ImageshopAsset() { documentUrl = url };
+
+            var cf = await ImageshopAssetService.AddOrUpdateAssetAsync(asset, null, parent);
+            return Content(cf.ID + "");
 
         }
     }
