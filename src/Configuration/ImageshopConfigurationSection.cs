@@ -53,6 +53,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                     EnableDownloadDocuments = bool.Parse(settingsSection["enableDownloadDocuments"]),
                     FreeCrop = bool.Parse(settingsSection["freeCrop"]),
                     InterfaceName = settingsSection["interfaceName"],
+                    ImageDownloadAppend = settingsSection["imageDownloadAppend"],
                     DocumentPrefix = settingsSection["documentPrefix"],
                     Culture = settingsSection["culture"],
                     ProfileID = settingsSection["profileID"],

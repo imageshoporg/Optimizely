@@ -179,7 +179,11 @@ public class ImageshopAssetService: IImageshopAssetService
 
     private string GetDownloadUrl(ImageshopAsset asset)
     {
-        return asset.image?.file ?? asset.documentUrl;
+
+        if (asset.image?.file != null)
+            return asset.image.file + _imageshopSettings.ImageDownloadAppend;
+                
+        return  asset.documentUrl;
     }
     
     private async Task<Stream> GetMediaDataStreamAsync(string url)
