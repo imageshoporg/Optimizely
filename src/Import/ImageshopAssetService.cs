@@ -93,7 +93,8 @@ public class ImageshopAssetService: IImageshopAssetService
 
     private async Task<MediaData> SaveAssetAsync(ImageshopAsset asset, string jsonAsset, string parent)
     {
-        var title = asset.documentUrl ?? FindTitle(asset) + ".jpg";
+        var fileExt = MimeTypeMapper.GetExtensionForMimeType(asset.image?.mimeType);
+        var title = asset.documentUrl ?? FindTitle(asset) + fileExt;
         var fileInfo = new FileInfo(title);
         var mediaTypes = _contentMediaResolver.ListAllMatching(fileInfo.Extension);
         Type? mediaType = null;

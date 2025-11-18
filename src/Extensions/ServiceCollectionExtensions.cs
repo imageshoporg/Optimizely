@@ -23,7 +23,7 @@ namespace Imageshop.Optimizely.Plugin.Extensions
         {
             var executingAssembliy = Assembly.GetExecutingAssembly();
 
-            services.Configure<ProtectedModuleOptions>(o => o.Items.Add(new ModuleDetails { Name = "Imageshop.Optimizely.Plugin" }));
+            services.Configure<ProtectedModuleOptions>(o => o.Items.Add(new ModuleDetails { Name = "Imageshop.Optimizely.Plugin", ResourcePath = "{rootpath}{modulename}" }));
 
 
             services.AddSingleton<IImageshopAssetService, ImageshopAssetService>();

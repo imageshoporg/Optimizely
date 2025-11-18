@@ -4,16 +4,14 @@ define([
     "epi/_Module",
     "epi-cms/plugin-area/assets-pane",
     "imageshop-optimizely-plugin/AssetPane",
-    "epi/dependency",
-    "epi/routes"
+    "epi/i18n!epi/cms/nls/episerver.cms.widget.thumbnailselector"
 ], function (
     dojo,
     declare,
     _Module,
     assetsPanePluginArea,
     ImportCommand,
-    dependency,
-    routes
+    resources
 ) {
     return declare([_Module], {
         initialize: function () {
@@ -28,9 +26,18 @@ define([
 
                     var importCommand1 = new ImportCommand();
                     importCommand1.baseUrl = this._settings.baseUrl;
-                    importCommand1.enableDocuments = this._settings.pluginenabledocuments;
-                    importCommand1.label = "Import from Imageshop";// resources.importTitle;
+                    importCommand1.enableDocuments = false;
+                    importCommand1.label = resources.importimageshoptitle;
                     assetsPanePluginArea.add(importCommand1);
+
+                    if (this._settings.pluginenabledocuments == true) {
+                        var importCommand = new ImportCommand();
+                        importCommand.baseUrl = this._settings.baseUrl;
+                        importCommand.enableDocuments = this._settings.pluginenabledocuments;
+                        importCommand.label = resources.importimageshopdocumenttitle;
+                        assetsPanePluginArea.add(importCommand);
+                    }
+
                 }
 
             } catch (error) {

@@ -115,6 +115,7 @@
         public int width { get; set; }
         public int height { get; set; }
         public string thumbnail { get; set; }
+        public string mimeType { get; set; }
     }
 
     public class Text
