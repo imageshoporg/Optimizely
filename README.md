@@ -61,7 +61,7 @@ After the package is successfully installed you need to add your access token to
             "showCropDialog": "true",
             "freeCrop": "true",
             "initializeTinyMCEPlugin": "true",
-            //starting from version 2.0
+            //starting from version 1.4
             "enableDownload": true, //Enable import button in Media Asset Pane
             "imageDownloadAppend": "__w=800_autocrop=true", //Will add this to Permalink when downloaded into Optimizely. Example if you want it always downloads the image in 1200 with, add "__w=1200_autocrop=true" documentation https://apidocumentation.imageshop.no/start.aspx
             "enableDownloadDocuments": true //Enable import document in Media Asset Pane
@@ -184,7 +184,7 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 ![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
-- **v2.0.0.0** _(08.10.25)_: Add possibility to download asset to Optimizely default Asset pane (use in Commerce and default media property)
+- **v1.4.0.0** _(20.11.25)_: Add possibility to download assets (images and document) to Optimizely default Asset pane (use in Commerce and default media property)
 - **v1.3.1.0** _(08.02.25)_: Add FocalPoint
 - **v1.3.0.0** _(02.02.25)_: Add TinyMCE Import Video, back track permalink, bugfix listener, localization
 - **v1.2.6.2** _(10.12.24)_: bugfixes + new latest jquery version 

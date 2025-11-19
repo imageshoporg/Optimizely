@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Imageshop.Optimizely.Plugin</id>
-        <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.</description>
+        <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/imageshoporg/Optimizely for more details.</description>
         <version>1.4.0.0</version>
         <authors>Epinova, Geta, Bouvet</authors>
         <owners>Imageshop</owners>
-        <projectUrl>https://github.com/screentek/Optimizely</projectUrl>
+        <projectUrl>https://github.com/imageshoporg/Optimizely</projectUrl>
         <license type="expression">Apache-2.0</license>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <repository type="git" url="https://github.com/screentek/Optimizely" />
+        <repository type="git" url="https://github.com/imageshoporg/Optimizely" />
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>

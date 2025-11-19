@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Imageshop.Optimizely.Plugin")]
-[assembly: AssemblyDescription("Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.")]
+[assembly: AssemblyDescription("Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/imageshoporg/Optimizely for more details.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Epinova, Geta, Bouvet")]
 [assembly: AssemblyProduct("Imageshop.Optimizely.Plugin")]

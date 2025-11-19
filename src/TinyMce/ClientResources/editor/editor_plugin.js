@@ -202,10 +202,10 @@ tinymce.PluginManager.add("imageshopoptimizelyplugin", function (ed, url) {
         getMetadata: function () {
             return {
                 name: "Imageshop image plugin",
-                url: "https://github.com/screentek/Optimizely",
+                url: "https://github.com/imageshoporg/Optimizely",
                 author: 'Geta AS, Bouvet ASA, Epinova AB, Imageshop, tinymce ' + tinymce.majorVersion + '.' + tinymce.minorVersion,
-                authorurl: 'https://github.com/screentek/Optimizely',
-                infourl: 'https://github.com/screentek/Optimizely',
+                authorurl: 'https://github.com/imageshoporg/Optimizely',
+                infourl: 'https://github.com/imageshoporg/Optimizely',
                 version: tinymce.majorVersion + "." + tinymce.minorVersion
             };
         }
