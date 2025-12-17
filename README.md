@@ -21,6 +21,9 @@ Two concepts are introduced with this plugin:
    - Supports both images and documents (pdf, word, excel etc)
    - Minimal vendor lock-in
    - Extensions methods available => @Html.Imageshop(Model.CurrentPage.PageImage)
+  
+     <img width="397" height="560" alt="image" src="https://github.com/user-attachments/assets/fd0c076e-fc70-435e-b1dd-34a24e3bb6a0" />
+
 
 2. **Imageshop Image/video Property**: A custom property that allows editors to select images and video from Imageshop and store metadata such as alt text, title, description, and permalink. The property also supports predefined size presets and cropping options.
 
