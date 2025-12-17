@@ -3,13 +3,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>Release;</Configurations>
+    <Configurations>Release;Debug</Configurations>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <NuspecFile>Imageshop.Optimizely.Plugin.nuspec</NuspecFile>
     <RootNamespace>Imageshop.Optimizely.Plugin</RootNamespace>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Import\imageshop.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Import\imageshop.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS" Version="12.8.0" />

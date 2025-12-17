@@ -2,17 +2,35 @@
 
 [![Platform](https://img.shields.io/badge/Platform-.NET%206.0-blue.svg?style=flat)](https://msdn.microsoft.com/en-us/library/w0x726c2%28v=vs.110%29.aspx)
 [![Platform](https://img.shields.io/badge/Optimizely-%2012.8.0-blue.svg?style=flat)](https://www.optimizely.com/products/content)
-Github repository: https://github.com/screentek/Optimizely
+Github repository: https://github.com/imageshoporg/Optimizely
 
-[Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12](http://www.optimizely.com) CMS User Interface. It contains a custom property and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
+[Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12](http://www.optimizely.com) CMS and Commerce User Interface. It contains a custom property, import functionality to asset pane and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
 
 ## How to get started - Installation
 
-### Summary
+### Concept Summary
 
-The installation process currently requires some manual work. We are working to improve this process.
+Two concepts are introduced with this plugin:
+
+1. **Default media asset property**: Allows the editor to import images and documents from Imageshop directly into the default Optimizely media asset pane. 
+
+   - This works for both Optimizely CMS and Commerce.
+   - When importing a configured smaller copy of the image will be downloaded from Imageshop and metadata is stored in a Optimizely media asset property. This enables default Optimizely UI behavior. 
+   - This feature is optional but best practice and can be enabled/disabled in the configuration section in appsettings.json
+   - The implementer can choose to use de Imageshop cdn url with all the benefits of size and cropping, performance and scalability from Imageshop. Alternatively the stored image from the Optimizely media asset system can be used.
+   - Supports both images and documents (pdf, word, excel etc)
+   - Minimal vendor lock-in
+   - Extensions methods available => @Html.Imageshop(Model.CurrentPage.PageImage)
+
+2. **Imageshop Image/video Property**: A custom property that allows editors to select images and video from Imageshop and store metadata such as alt text, title, description, and permalink. The property also supports predefined size presets and cropping options.
+
+   - This feature is optional and can be enabled/disabled in the configuration section in appsettings.json
+   - Saves metadata only in the Optimizely store, no images are downloaded
+   - Uses Imageshop CDN for image delivery
 
 #### 1. Installing Nuget Package:
+
+The installation process may requires some manual work.
 
 Start by installing NuGet package (use [the Nuget.org feed](https://www.nuget.org/packages/Imageshop.Optimizely.Plugin/) or [the Optimizely feed](https://nuget.optimizely.com/package/?id=Imageshop.Optimizely.Plugin))
 
@@ -38,17 +56,17 @@ Or in if you rather add this to your TinyMCE config (can be used for custom tiny
             config.Default()
              .AddImageshopToTinyMCE()); <---
 
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/installation1.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/installation1.png)
 
 If you have problems with routes that causes the client to not load, you can add this to your Configure method, app.UseEndpoints, in startup.cs:
 
     endpoints.MapControllers();
 
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/mapcontrollers.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/mapcontrollers.png)
 
 #### 3. Configure access token:
 
-After the package is successfully installed you need to add your access token to configuration section ImageshopOptimizelyPlugin in your [appsettings.json](https://github.com/screentek/Optimizely/tree/master/ModifyTheseFiles) located in root directory:
+After the package is successfully installed you need to add your access token to configuration section ImageshopOptimizelyPlugin in your [appsettings.json](https://github.com/imageshoporg/Optimizely/tree/master/ModifyTheseFiles) located in root directory:
 
 ```
     "ImageshopOptimizelyPlugin": {
@@ -60,14 +78,18 @@ After the package is successfully installed you need to add your access token to
             "showSizeDialog": "true",
             "showCropDialog": "true",
             "freeCrop": "true",
-            "initializeTinyMCEPlugin": "true"
+            "initializeTinyMCEPlugin": "true",
+            //starting from version 1.4
+            "enableDownload": true, //Enable import button in Media Asset Pane
+            "imageDownloadAppend": "__w=800_autocrop=true", //Will add this to Permalink when downloaded into Optimizely. Example if you want it always downloads the image in 1200 with, add "__w=1200_autocrop=true" documentation https://apidocumentation.imageshop.no/start.aspx
+            "enableDownloadDocuments": true //Enable import document in Media Asset Pane
         }
     }
 ```
 
 > **Note**: The plugin will first look for settings based on your current environment. If it's set to "Development" it will first look into appSettings.Development.json, if still not found it will look for settings inside appSettings.json (settings for your current environment will override settings in appSettings.json). The settings file can also be called appsettings.json (with a lowercase s).
 
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/config.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/config.png)
 
 #### 4. Publishing your project
 
@@ -85,10 +107,10 @@ To add the necessary code to your .csproj file, follow these steps:
 </ItemGroup>
 ```
 
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/csproj_addition.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/csproj_addition.png)
 
 **Or** you can perform this action directly in Visual Studio, which will automatically add the code mentioned above to your .csproj file Select the Imageshop.Optimizely.Plugin.zip file and choose the option "Copy if never":
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/mark_zipfile.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/mark_zipfile.png)
 
 Build your project before publishing, and the module files will be included.
 
@@ -129,6 +151,12 @@ Build your project before publishing, and the module files will be included.
 
     @Html.PropertyFor(m => m.CurrentPage.MainVideo)
 
+### Example render standard media property where [UIHint(UIHint.Image)] is used
+
+    <div @Html.EditAttributes("PageImage")>
+        @Html.Imageshop(Model.CurrentPage.PageImage) // will render the image with alt text and URL from Imageshop
+    </div>
+
 ### Imageshop video collection property:
 
     [BackingType(typeof(PropertyImageshopVideoCollection))]
@@ -167,13 +195,14 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ## Screenshots
 
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-epi-dialogue.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-epi-dialogue.png)
 
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-selection.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-selection.png)
 
-![ScreenShot](https://raw.githubusercontent.com/screentek/Optimizely/master/docs/imageshop-tinymce-plugin.png)
+![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
+- **v1.4.0.0** _(20.11.25)_: Add possibility to download assets (images and document) to Optimizely default Asset pane (use in Commerce and default media property)
 - **v1.3.1.0** _(08.02.25)_: Add FocalPoint
 - **v1.3.0.0** _(02.02.25)_: Add TinyMCE Import Video, back track permalink, bugfix listener, localization
 - **v1.2.6.2** _(10.12.24)_: bugfixes + new latest jquery version 

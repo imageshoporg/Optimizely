@@ -46,6 +46,13 @@ namespace Imageshop.Optimizely.Plugin.Configuration
             }
         }
 
+        public bool EnableDownload { get; set; }
+        /// <summary>
+        /// Will add this to Permalink when downloaded into Optimizely. Example if you want it always downloads the image in 1200 with, add "__w=1200_autocrop=true" documentation https://apidocumentation.imageshop.no/start.aspx
+        /// </summary>
+        public string ImageDownloadAppend { get; set; }
+        public bool EnableDownloadDocuments { get; set; }
+
         public static class UIHint
         {
             public const string ImageshopImage = "ImageshopImage";

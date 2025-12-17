@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Imageshop.Optimizely.Plugin")]
-[assembly: AssemblyDescription("Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.")]
+[assembly: AssemblyDescription("Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/imageshoporg/Optimizely for more details.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Epinova, Geta, Bouvet")]
 [assembly: AssemblyProduct("Imageshop.Optimizely.Plugin")]
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //
 // Update the version number below in both AssemblyVersion and AssemblyFileVersion before publishing an update of the plugin
 // Before publishing a new version, you should also update the version number in the Imageshop.Optimizely.Plugin.nuspec file. These version numbers should be identical.
-[assembly: AssemblyVersion("1.3.1.0")]
-[assembly: AssemblyFileVersion("1.3.1.0")]
+[assembly: AssemblyVersion("1.4.0.0")]
+[assembly: AssemblyFileVersion("1.4.0.0")]

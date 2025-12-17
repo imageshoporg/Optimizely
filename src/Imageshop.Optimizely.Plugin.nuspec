@@ -2,18 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Imageshop.Optimizely.Plugin</id>
-        <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/screentek/Optimizely for more details.</description>
-        <version>1.3.1.0</version>
+        <description>Imageshop Optimizely 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/imageshoporg/Optimizely for more details.</description>
+        <version>1.4.0.0</version>
         <authors>Epinova, Geta, Bouvet</authors>
         <owners>Imageshop</owners>
-        <projectUrl>https://github.com/screentek/Optimizely</projectUrl>
+        <projectUrl>https://github.com/imageshoporg/Optimizely</projectUrl>
         <license type="expression">Apache-2.0</license>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <repository type="git" url="https://github.com/screentek/Optimizely" />
+        <repository type="git" url="https://github.com/imageshoporg/Optimizely" />
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>
-        <releaseNotes>v1.3.1: add focalpoint - v1.3.0: Add TinyMCE Import Video + bugfix listener + back track permalink + localization    v1.2.6.2: Localization in Picker + new logo tinymce + fix bugs v1.2.5: Added AltText before Description + AddEnvironmentVariables - v1.2.2: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.</releaseNotes>
+        <releaseNotes>v1.4: add download to media library, add download document - v1.3.1: add focalpoint - v1.3.0: Add TinyMCE Import Video + bugfix listener + back track permalink + localization    v1.2.6.2: Localization in Picker + new logo tinymce + fix bugs v1.2.5: Added AltText before Description + AddEnvironmentVariables - v1.2.2: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.</releaseNotes>
         <dependencies>
           <dependency id="EPiServer.CMS" version="12.8.0" />
         </dependencies>

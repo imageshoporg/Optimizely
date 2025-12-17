@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EPiServer.Logging;
 using EPiServer.Shell.Services.Rest;
+using EPiServer.Web;
+using Imageshop.Optimizely.Plugin.Configuration;
+using Imageshop.Optimizely.Plugin.Import;
+using Imageshop.Optimizely.Plugin.Services;
 using Imageshop.Optimizely.Plugin.WebService;
 using Imageshop.Optimizely.Plugin.WebService.Responses;
-using Imageshop.Optimizely.Plugin.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
-using EPiServer.Logging;
-using EPiServer.Web;
+using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Imageshop.Optimizely.Plugin.Controllers
 {
@@ -21,9 +26,12 @@ namespace Imageshop.Optimizely.Plugin.Controllers
     {
         private readonly WebServiceWrapper _webServiceWrapper;
 
-        public ImageshopStore()
+        public IImageshopAssetService ImageshopAssetService { get; }
+
+        public ImageshopStore(IImageshopAssetService imageshopAssetService)
         {
             _webServiceWrapper = new WebServiceWrapper(ImageshopConfigurationSection.Settings.WebServiceUrl!, ImageshopConfigurationSection.Settings.Token!);
+            ImageshopAssetService = imageshopAssetService;
         }
 
         [HttpGet]
@@ -80,6 +88,49 @@ namespace Imageshop.Optimizely.Plugin.Controllers
 
                 return Rest("Error saving permalinks ImageShop: permalink " + url + ". Message: " + ex.Message);
             }
+        }
+
+
+        /// <summary>
+        /// Called from imageshop dialog when user has selected asset(s) to import.
+        /// </summary>
+        /// <param name="parent">the parent object or folder to save under</param>
+        /// <param name="assetsChosen">Selected ImageShop asset(s)</param>
+        /// <returns>Content Reference Id</returns>
+        [HttpPost]
+        [Route("/imageshopextended/imageshopstore/import")]
+        public async Task<ContentResult> ImportAsync([FromQuery] string parent, [FromBody] JsonElement[] assetsChosen, [FromQuery] string adminUrl = null)
+        {
+
+            var jsonAsset = assetsChosen.FirstOrDefault().ToString();
+            // Only one asset is chosen
+            var asset = JsonSerializer.Deserialize<ImageshopAsset>(jsonAsset); 
+
+            var cf = await ImageshopAssetService.AddOrUpdateAssetAsync(asset, jsonAsset, parent);
+            return Content(cf.ID + "");
+
+        }
+
+        /// <summary>
+        /// Called from imageshop dialog when user has selected asset(s) to import.
+        /// </summary>
+        /// <param name="parent">the parent object or folder to save under</param>
+        /// <param name="assetsChosen">Selected ImageShop asset(s)</param>
+        /// <returns>Content Reference Id</returns>
+        [Route("/imageshopextended/imageshopstore/importdocument")]
+        [HttpGet]
+        public async Task<ContentResult> ImportDocumentAsync([FromQuery] string parent, [FromQuery] string url, [FromQuery] string adminUrl)
+        {
+
+            //var jsonAsset = assetsChosen.First().ToString();
+            // Only one asset is chosen
+            //var asset = JsonSerializer.Deserialize<Imageshop>(jsonAsset);
+
+            var asset = new ImageshopAsset() { documentUrl = url };
+
+            var cf = await ImageshopAssetService.AddOrUpdateAssetAsync(asset, null, parent);
+            return Content(cf.ID + "");
+
         }
     }
 }

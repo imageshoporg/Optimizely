@@ -3,6 +3,8 @@ using EPiServer.Shell;
 using EPiServer.Shell.Modules;
 using Imageshop.Optimizely.Plugin.Configuration;
 using Imageshop.Optimizely.Plugin.Helpers;
+using Imageshop.Optimizely.Plugin.Import;
+using Imageshop.Optimizely.Plugin.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -21,7 +23,11 @@ namespace Imageshop.Optimizely.Plugin.Extensions
         {
             var executingAssembliy = Assembly.GetExecutingAssembly();
 
-            services.Configure<ProtectedModuleOptions>(o => o.Items.Add(new ModuleDetails { Name = "Imageshop.Optimizely.Plugin" }));
+            services.Configure<ProtectedModuleOptions>(o => o.Items.Add(new ModuleDetails { Name = "Imageshop.Optimizely.Plugin", ResourcePath = "{rootpath}{modulename}" }));
+
+
+            services.AddSingleton<IImageshopAssetService, ImageshopAssetService>();
+            services.AddSingleton<IFolderResolver, ForThisPageFolderResolver>();
 
             return services.Configure<IMvcBuilder>(x => x.AddApplicationPart(executingAssembliy));
         }
