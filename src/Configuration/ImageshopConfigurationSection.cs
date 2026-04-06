@@ -1,8 +1,6 @@
-﻿using Castle.Core.Internal;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Imageshop.Optimizely.Plugin.Configuration
 {
@@ -82,13 +80,13 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 
             foreach (var sizeString in sizePresets.Split(':'))
             {
-                if (sizeString.IsNullOrEmpty()) continue;
+                if (string.IsNullOrEmpty(sizeString)) continue;
 
                 var sizeStringParts = sizeString.Split(';');
                 if (sizeStringParts.Length != 2) continue;
 
                 var sizeName = sizeStringParts[0];
-                if (sizeName.Trim().IsNullOrEmpty()) continue;
+                if (string.IsNullOrEmpty(sizeName.Trim())) continue;
 
                 var sizesPartsString = sizeStringParts[1].ToLower().Split('x');
 

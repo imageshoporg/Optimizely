@@ -1,7 +1,9 @@
-# Imageshop.Optimizely.Plugin
+# Imageshop.Optimizely.Plugin for CMS 12 and 13!
 
-[![Platform](https://img.shields.io/badge/Platform-.NET%206.0-blue.svg?style=flat)](https://msdn.microsoft.com/en-us/library/w0x726c2%28v=vs.110%29.aspx)
+[![Platform](https://img.shields.io/badge/Platform-.NET%208.0-blue.svg?style=flat)](https://msdn.microsoft.com/en-us/library/w0x726c2%28v=vs.110%29.aspx)
+[![Platform](https://img.shields.io/badge/Platform-.NET%2010.0-blue.svg?style=flat)](https://msdn.microsoft.com/en-us/library/w0x726c2%28v=vs.110%29.aspx)
 [![Platform](https://img.shields.io/badge/Optimizely-%2012.8.0-blue.svg?style=flat)](https://www.optimizely.com/products/content)
+[![Platform](https://img.shields.io/badge/Optimizely-%2013.0.0-blue.svg?style=flat)](https://www.optimizely.com/products/content)
 Github repository: https://github.com/imageshoporg/Optimizely
 
 [Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12](http://www.optimizely.com) CMS and Commerce User Interface. It contains a custom property, import functionality to asset pane and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
@@ -202,6 +204,7 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 ![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
+- **v2.0.0.0** _(05.04.26)_: Update for Optimizely CMS 13 .net10 compatibility together with CMS 12 .net8
 - **v1.4.0.0** _(20.11.25)_: Add possibility to download assets (images and document) to Optimizely default Asset pane (use in Commerce and default media property)
 - **v1.3.1.0** _(08.02.25)_: Add FocalPoint
 - **v1.3.0.0** _(02.02.25)_: Add TinyMCE Import Video, back track permalink, bugfix listener, localization
