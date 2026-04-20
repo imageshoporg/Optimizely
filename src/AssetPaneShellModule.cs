@@ -9,9 +9,17 @@ namespace Imageshop.Optimizely.Plugin
 {
     public class AssetPaneShellModule : ShellModule
     {
-        public AssetPaneShellModule(string name, string routeBasePath, string resourceBasePath) : base(name, routeBasePath, resourceBasePath)
+#if NET10_0_OR_GREATER
+    public AssetPaneShellModule(Microsoft.Extensions.Logging.ILogger<ShellModule> logger)
+        : base(logger)
+    {
+    }
+#else
+        public AssetPaneShellModule(string name, string routeBasePath, string resourceBasePath)
+            : base(name, routeBasePath, resourceBasePath)
         {
         }
+#endif
 
         /// <inheritdoc />
         public override ModuleViewModel CreateViewModel(ModuleTable moduleTable, IClientResourceService clientResourceService)

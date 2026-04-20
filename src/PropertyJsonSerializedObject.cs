@@ -1,17 +1,59 @@
 ﻿using EPiServer.Core;
-using EPiServer.Logging;
-using Newtonsoft.Json;
 using System;
+using System.Text.Json;
 
 namespace Imageshop.Optimizely.Plugin
 {
     /// <summary>
     /// Abstract class to serialize objects
     /// </summary>
+#if NET10_0_OR_GREATER
+    public abstract class PropertyJsonSerializedObject<T> : PropertyJsonString where T : class
+    {
+        protected T _value;
+
+        public override Type PropertyValueType => typeof(T);
+
+        public override object Value
+        {
+            get
+            {
+                try
+                {
+                    var json = Json;
+
+                    if (string.IsNullOrWhiteSpace(json))
+                    {
+                        return null!;
+                    }
+
+                    _value = JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions() { AllowTrailingCommas = true });
+
+                    return _value!;
+                }
+                catch (Exception)
+                {
+                    return null!;
+                }
+            }
+            set
+            {
+                if (value is T)
+                {
+                    _value = null;
+                    Json = JsonSerializer.Serialize(value);
+                    return;
+                }
+
+                _value = null;
+                base.Value = value;
+            }
+        }
+    }
+#else
     public abstract class PropertyJsonSerializedObject<T> : PropertyLongString where T : class
     {
         protected T _value;
-        private readonly EPiServer.Logging.ILogger _log = LogManager.GetLogger(typeof(PropertyJsonSerializedObject<T>));
 
         public override Type PropertyValueType => typeof(T);
 
@@ -28,14 +70,12 @@ namespace Imageshop.Optimizely.Plugin
                         return null!;
                     }
 
-                    _value = System.Text.Json.JsonSerializer.Deserialize<T>(value, new System.Text.Json.JsonSerializerOptions() {  AllowTrailingCommas= true});
+                    _value = JsonSerializer.Deserialize<T>(value, new JsonSerializerOptions() { AllowTrailingCommas = true });
 
                     return _value!;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    _log.Error("There was exception whilst deserialising object", ex);
-
                     return null!;
                 }
             }
@@ -44,7 +84,7 @@ namespace Imageshop.Optimizely.Plugin
                 if (value is T)
                 {
                     _value = null;
-                    base.Value = JsonConvert.SerializeObject(value);
+                    base.Value = JsonSerializer.Serialize(value);
                     return;
                 }
 
@@ -57,4 +97,5 @@ namespace Imageshop.Optimizely.Plugin
             return LongString;
         }
     }
+#endif
 }
