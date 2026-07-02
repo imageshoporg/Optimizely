@@ -156,13 +156,6 @@
     {
     }
 
-    public class Documentinfo1
-    {
-        public int DocumentInfoTypeId { get; set; }
-        public string Name { get; set; }
-        public string Value { get; set; }
-    }
-
     public class Sv : LangInfo
     {
     }
@@ -170,23 +163,11 @@
     public class Nb : LangInfo
     {
     }
-    public class Documentinfo2
-    {
-        public int DocumentInfoTypeId { get; set; }
-        public string Name { get; set; }
-        public string Value { get; set; }
-    }
 
     public class Nn : LangInfo
     {
     }
 
-    public class Documentinfo3
-    {
-        public int DocumentInfoTypeId { get; set; }
-        public string Name { get; set; }
-        public string Value { get; set; }
-    }
 
     public class Da : LangInfo
     {

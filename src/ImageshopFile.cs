@@ -1,3 +1,4 @@
+using Imageshop.Optimizely.Plugin.Import;
 using System;
 
 namespace Imageshop.Optimizely.Plugin
@@ -22,6 +23,7 @@ namespace Imageshop.Optimizely.Plugin
         public virtual string Rights { get; set; }
         public virtual string Tags { get; set; }
         public virtual string AuthorName { get; set; }
+        public virtual Documentinfo[] DocumentInfo { get; set; }
         public DateTime Changed { get; set; }
     }
 }
