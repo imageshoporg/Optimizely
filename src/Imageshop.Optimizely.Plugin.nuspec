@@ -3,7 +3,7 @@
     <metadata>
         <id>Imageshop.Optimizely.Plugin</id>
         <description>Imageshop Optimizely CMS 12 and 13 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/imageshoporg/Optimizely for more details.</description>
-        <version>2.0.0.0</version>
+        <version>2.1.0.0</version>
         <authors>Epinova, Geta, Bouvet</authors>
         <owners>Imageshop</owners>
         <projectUrl>https://github.com/imageshoporg/Optimizely</projectUrl>
@@ -13,7 +13,7 @@
         <copyright>Copyright © Imageshop.no</copyright>
         <tags>Episerver, Optimizely, Imageshop</tags>
         <readme>docs\README.md</readme>
-        <releaseNotes>v2.0.0: Update for Optimizely CMS 13 compatibility - v1.4: add download to media library, add download document - v1.3.1: add focalpoint - v1.3.0: Add TinyMCE Import Video + bugfix listener + back track permalink + localization    v1.2.6.2: Localization in Picker + new logo tinymce + fix bugs v1.2.5: Added AltText before Description + AddEnvironmentVariables - v1.2.2: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.</releaseNotes>
+        <releaseNotes>v2.1.0: Save metadata documentinfo on image and video - v2.0.0: Update for Optimizely CMS 13 compatibility - v1.4: add download to media library, add download document - v1.3.1: add focalpoint - v1.3.0: Add TinyMCE Import Video + bugfix listener + back track permalink + localization    v1.2.6.2: Localization in Picker + new logo tinymce + fix bugs v1.2.5: Added AltText before Description + AddEnvironmentVariables - v1.2.2: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.</releaseNotes>
         <dependencies>
 			<group targetFramework="net8.0">
 				<dependency id="EPiServer.CMS.UI" version="[12.18.0,13.0)" />

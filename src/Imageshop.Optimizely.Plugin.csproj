@@ -28,10 +28,10 @@
 
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-		<PackageReference Include="EPiServer.CMS.UI.Core" Version="[13.0.0-preview4,14.0.0)" />
-		<PackageReference Include="EPiServer.CMS.TinyMce" Version="[13.0.0-preview4,14.0.0)" />
-		<PackageReference Include="EPiServer.CMS.Core" Version="[13.0.0-preview4,14.0.0)" />
-		<PackageReference Include="EPiServer.Logging" Version="[13.0.0-preview4,14.0.0)" />
+		<PackageReference Include="EPiServer.CMS.UI.Core" Version="[13.0.0,14.0.0)" />
+		<PackageReference Include="EPiServer.CMS.TinyMce" Version="[13.0.0,14.0.0)" />
+		<PackageReference Include="EPiServer.CMS.Core" Version="[13.0.0,14.0.0)" />
+		<PackageReference Include="EPiServer.Logging" Version="[13.0.0,14.0.0)" />
 	</ItemGroup>
 
 </Project>

@@ -206,6 +206,7 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 ![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
+- **v2.1.0.0** _(02.07.26)_: Save metadata documentinfo on image and video
 - **v2.0.0.0** _(05.04.26)_: Update for Optimizely CMS 13 .net10 compatibility together with CMS 12 .net8
 - **v1.4.0.0** _(20.11.25)_: Add possibility to download assets (images and document) to Optimizely default Asset pane (use in Commerce and default media property)
 - **v1.3.1.0** _(08.02.25)_: Add FocalPoint

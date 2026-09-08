@@ -218,6 +218,7 @@ define([
                         this.currentImage.focalPoint = imageData.focalPoint;
                         this.currentImage.rights = textData.rights;
                         this.currentImage.tags = textData.tags;
+                        this.currentImage.documentinfo = textData.documentinfo;
                     }
 
                     if (imageData.videos) {
