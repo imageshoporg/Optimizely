@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/badge/Optimizely-%2013.0.0-blue.svg?style=flat)](https://www.optimizely.com/products/content)
 Github repository: https://github.com/imageshoporg/Optimizely
 
-[Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12](http://www.optimizely.com) CMS and Commerce User Interface. It contains a custom property, import functionality to asset pane and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
+[Imageshop](http://www.imageshop.org) is an online-based Digital Asset Management (DAM) software. This module integrates Imageshop in the [Optimizely 12 and 13](http://www.optimizely.com) CMS and Commerce User Interface. It contains a custom property, import functionality to asset pane and a TinyMCE plugin that launches the Imageshop image selection interface in a dialogue.
 
 ## How to get started - Installation
 
@@ -21,7 +21,6 @@ Two concepts are introduced with this plugin:
    - This feature is optional but best practice and can be enabled/disabled in the configuration section in appsettings.json
    - The implementer can choose to use de Imageshop cdn url with all the benefits of size and cropping, performance and scalability from Imageshop. Alternatively the stored image from the Optimizely media asset system can be used.
    - Supports both images and documents (pdf, word, excel etc)
-   - Minimal vendor lock-in
    - Extensions methods available => @Html.Imageshop(Model.CurrentPage.PageImage)
   
      <img width="397" height="560" alt="image" src="https://github.com/user-attachments/assets/fd0c076e-fc70-435e-b1dd-34a24e3bb6a0" />
