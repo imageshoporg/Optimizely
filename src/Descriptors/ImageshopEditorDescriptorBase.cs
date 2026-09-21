@@ -8,6 +8,7 @@ using EPiServer.ServiceLocation;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Shell.ObjectEditing.EditorDescriptors;
 using Imageshop.Optimizely.Plugin.Attributes;
+using Imageshop.Optimizely.Plugin.Configuration;
 using Imageshop.Optimizely.Plugin.UrlBuilders;
 
 namespace Imageshop.Optimizely.Plugin.Descriptors
@@ -36,6 +37,7 @@ namespace Imageshop.Optimizely.Plugin.Descriptors
             UriBuilder dialogUrl = ImageshopDialogUrlBuilder.BuildDialogUrl(configurationAttribute!, sizePresetAttributes, IsVideoDescriptor);
             metadata.EditorConfiguration.Add("baseUrl", dialogUrl.ToString());
             metadata.EditorConfiguration.Add("preferredLanguage", MapToImageshopLanguage(ContentLanguage.PreferredCulture));
+            metadata.EditorConfiguration.Add("fallbackLanguage", ImageshopConfigurationSection.Settings.FallbackLanguage);
             metadata.EditorConfiguration.Add("isVideo", IsVideoDescriptor);
 
             if (configurationAttribute != null)

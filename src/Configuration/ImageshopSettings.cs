@@ -17,6 +17,8 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 
         public string Culture { get; set; }
 
+        public string FallbackLanguage { get; set; }
+
         public string ProfileID { get; set; }
 
         //[ConfigurationProperty("webServiceUrl", DefaultValue = "http://imageshop.no/ws/v4.asmx", IsRequired = false)]

@@ -54,6 +54,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                     ImageDownloadAppend = settingsSection["imageDownloadAppend"],
                     DocumentPrefix = settingsSection["documentPrefix"],
                     Culture = settingsSection["culture"],
+                    FallbackLanguage = settingsSection["fallbackLanguage"] ?? "nb",
                     ProfileID = settingsSection["profileID"],
                     WebServiceUrl = settingsSection["webServiceUrl"] ?? "https://webservices.imageshop.no/v4.asmx",
                     InitializeTinyMCEPlugin = bool.Parse(settingsSection["initializeTinyMCEPlugin"]),
