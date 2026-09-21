@@ -2,6 +2,7 @@
 setlocal enabledelayedexpansion
 
 set "action=%1"
+set "cms12=%2"
 
 if not "%action%" == "release" (
     echo ---------------------------------
@@ -12,11 +13,15 @@ if not "%action%" == "release" (
 )
 
 rem -- Get the version of the plugin from the nuspec file --
-set "nuspecFile=%~dp0Imageshop.Optimizely.Plugin.nuspec"
+if "%cms12%" == "cms12" (
+    set "nuspecFile=%~dp0Imageshop.Optimizely.Plugin.Cms12.nuspec"
+) else (
+    set "nuspecFile=%~dp0Imageshop.Optimizely.Plugin.nuspec"
+)
 
 set "version="
-for /f "usebackq tokens=2 delims=()" %%a in (`findstr /R /C:"AssemblyVersion(.*)" "Properties\AssemblyInfo.cs"`) do (
-    set "version=%%~a"
+for /f "usebackq tokens=3 delims=<>" %%a in (`findstr /R /C:"<version>" "%nuspecFile%"`) do (
+    set "version=%%a"
 )
 
 echo Version: %version%
