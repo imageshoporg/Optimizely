@@ -1,0 +1,35 @@
+<?xml version = "1.0" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Imageshop.Optimizely.Plugin</id>
+        <description>Imageshop Optimizely CMS 12 integration. Contains property editor for single image and video and multiple images and videos as well as a TinyMCE plugin. See https://github.com/imageshoporg/Optimizely for more details. Use version 3 for CMS 13.</description>
+        <version>2.2.0.0</version>
+        <authors>Epinova, Geta, Bouvet</authors>
+        <owners>Imageshop</owners>
+        <projectUrl>https://github.com/imageshoporg/Optimizely</projectUrl>
+        <license type="expression">Apache-2.0</license>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <repository type="git" url="https://github.com/imageshoporg/Optimizely" />
+        <copyright>Copyright © Imageshop.no</copyright>
+        <tags>Episerver, Optimizely, Imageshop</tags>
+        <readme>docs\README.md</readme>
+        <releaseNotes>v2.2 only targeting CMS 12 - v2.1.0: Save metadata documentinfo on image and video - v2.0.0: Update for Optimizely CMS 13 compatibility - v1.4: add download to media library, add download document - v1.3.1: add focalpoint - v1.3.0: Add TinyMCE Import Video + bugfix listener + back track permalink + localization    v1.2.6.2: Localization in Picker + new logo tinymce + fix bugs v1.2.5: Added AltText before Description + AddEnvironmentVariables - v1.2.2: Additional code documentation and a bugfix for linux servers where first character of filename had to be uppercase. Renamed 'imageSelector' to 'ImageSelector'.</releaseNotes>
+        <dependencies>
+			<group targetFramework="net8.0">
+				<dependency id="EPiServer.CMS.UI" version="[12.18.0,13.0)" />
+				<dependency id="EPiServer.CMS.TinyMce" version="[4.2.0,6.0)" />
+			</group>
+        </dependencies>
+    </metadata>
+    <files>
+		<file src="bin\Release\net8.0\Imageshop.Optimizely.Plugin.dll" target="lib\net8.0\" />
+		<file src="Imageshop.Optimizely.Plugin.targets" target="build\net8.0\" />
+        <file src="..\README.md" target="docs\" />
+
+		<file src="TinyMce\ClientResources\ViewFiles\InsertImage.cshtml" target="content\Views\Imageshop\" />
+		<file src="PropertyViewFiles\ImageshopImage.cshtml" target="content\Views\Shared\DisplayTemplates\" />
+		<file src="PropertyViewFiles\ImageshopVideo.cshtml" target="content\Views\Shared\DisplayTemplates\" />
+		
+		<file src="ZippedFiles\Imageshop.Optimizely.Plugin.zip" target="modules\Imageshop.Optimizely.Plugin\Imageshop.Optimizely.Plugin.zip" copyToOutput="PreserveNewest" />
+	</files>
+</package>

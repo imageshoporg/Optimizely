@@ -78,6 +78,7 @@ After the package is successfully installed you need to add your access token to
             "token": "<Token here>",
             "interfaceName": "",
             "documentPrefix": "Warning",
+	    "fallbackLanguage": "en",// default nb, if textdata is null or empty use this language, if you are on swedish page in Optimizely, and import data, but no swedish metadata exists, use this instead      
             "profileId": "",
             "showSizeDialog": "true",
             "showCropDialog": "true",
@@ -185,11 +186,15 @@ for custom TinyMCE configurations use .AddImageshopToTinyMCE() to TinyMceSetting
 | token                   | string     | Token identifying the user.                                                                                                          |
 | interfaceName           | string     | Standard interface used when searching images.                                                                                       |
 | documentPrefix          | string     | Standard document code prefix used when uploading images.                                                                            |
-| culture                 | string     | Language for the client. Supports en-US and nb-NO. Norwegian is default (nb-NO).                                                     |
+| culture                 | string     | Not in use, uses the optimizely context language instead                                                                             |
+| fallbackLanguage        | string     | default nb, if textdata is null or empty use this language, if you are on swedish page in Optimizely, an import data, but no swedish metadata exists, use this instead |        
 | showSizeDialog          | true/false | Indicates whether the size dialogue should be shown. Default is true.                                                                |
 | showCropDialog          | true/false | Indicates whether the crop dialogue should be show. Default is true.                                                                 |
 | initializeTinyMCEPlugin | true/false | Indicates whether the tinymce plugin should be initialized.                                                                          |
 | sizePresets             | string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from. |
+| imageDownloadAppend | string | Will add this to Permalink when downloaded into Optimizely. Example if you want it always downloads the image in 1200 with, add "__w=1200_autocrop=true" documentation https://apidocumentation.imageshop.no/start.aspx                                              |
+| enableDownload | true/false | Enable import button in Media Asset Pane|
+| enableDownloadDocuments | true/false | Enable import document in Media Asset Pane                                                                         |
 
 See configuration section ImageshopOptimizelyPlugin in appSettings.json for examples.
 
@@ -206,6 +211,8 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 ![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Changelog
+- **v3.2.0.0** _(21.09.26)_: Targeting CMS 13 only, branching versioning. Feature: Fallback language metadata.
+- **v2.2.0.0** _(21.09.26)_: Targeting CMS 12 only, still .net8 but works with .net10. Feature: Fallback language metadata.
 - **v2.1.0.0** _(02.07.26)_: Save metadata documentinfo on image and video
 - **v2.0.0.0** _(05.04.26)_: Update for Optimizely CMS 13 .net10 compatibility together with CMS 12 .net8
 - **v1.4.0.0** _(20.11.25)_: Add possibility to download assets (images and document) to Optimizely default Asset pane (use in Commerce and default media property)

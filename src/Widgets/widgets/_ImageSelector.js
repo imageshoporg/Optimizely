@@ -183,11 +183,25 @@ define([
                 }
             },
 
+            hasValidTextData: function (textData) {
+                if (!textData) {
+                    return false;
+                }
+                var requiredFields = ['altText', 'categories', 'credits', 'description', 'documentinfo', 'rights', 'tags', 'title'];
+                return requiredFields.some(function (field) {
+                    return textData[field] !== null && textData[field] !== undefined;
+                }); 
+            },
+
             setBasicImage: function (data) {
                 try {
                     var imageData = JSON.parse(data.split(";")[0]);
                     var textData = imageData.text[this.preferredLanguage];
-                    window.console && console.log(imageData);
+
+                    if (!this.hasValidTextData(textData) && this.fallbackLanguage && imageData.text[this.fallbackLanguage]) {
+                        textData = imageData.text[this.fallbackLanguage];
+                        console.log("Using fallback language for image text data: " + this.fallbackLanguage);
+                    } 
 
                     var imageProfileData = null;
                     if (imageData.profile) {
