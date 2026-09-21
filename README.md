@@ -184,11 +184,19 @@ for custom TinyMCE configurations use .AddImageshopToTinyMCE() to TinyMceSetting
 | token                   | string     | Token identifying the user.                                                                                                          |
 | interfaceName           | string     | Standard interface used when searching images.                                                                                       |
 | documentPrefix          | string     | Standard document code prefix used when uploading images.                                                                            |
-| culture                 | string     | Language for the client. Supports en-US and nb-NO. Norwegian is default (nb-NO).                                                     |
+| culture                 | string     | Not in use, uses the optimizely context language instead 
+|  
+| fallbackLanguage        | string     | default nb, if textdata is null or empty use this language, if you are on swedish page in Optimizely, an import data, but no swedish metadata exists, use this instead
+|        
 | showSizeDialog          | true/false | Indicates whether the size dialogue should be shown. Default is true.                                                                |
 | showCropDialog          | true/false | Indicates whether the crop dialogue should be show. Default is true.                                                                 |
 | initializeTinyMCEPlugin | true/false | Indicates whether the tinymce plugin should be initialized.                                                                          |
-| sizePresets             | string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from. |
+| sizePresets             | string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from. 
+|
+| imageDownloadAppend | string | Will add this to Permalink when downloaded into Optimizely. Example if you want it always downloads the image in 1200 with, add "__w=1200_autocrop=true" documentation https://apidocumentation.imageshop.no/start.aspx                                                                       |
+| enableDownload | true/false | Enable import button in Media Asset Pane
+|
+| enableDownloadDocuments | true/false | Enable import document in Media Asset Pane                                                                         |
 
 See configuration section ImageshopOptimizelyPlugin in appSettings.json for examples.
 
