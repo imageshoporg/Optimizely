@@ -15,7 +15,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
         public string InterfaceName { get; set; }
         public string DocumentPrefix { get; set; }
 
-        public string Culture { get; set; }
+        public string Culture { get; set; }//not in use, uses the optimizely context language instead
 
         public string FallbackLanguage { get; set; }
 

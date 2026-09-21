@@ -76,6 +76,7 @@ After the package is successfully installed you need to add your access token to
             "token": "<Token here>",
             "interfaceName": "",
             "documentPrefix": "Warning",
+	    "fallbackLanguage": "en",// default nb, if textdata is null or empty use this language, if you are on swedish page in Optimizely, and import data, but no swedish metadata exists, use this instead      
             "profileId": "",
             "showSizeDialog": "true",
             "showCropDialog": "true",
