@@ -38,6 +38,7 @@ define([
         filesNotOpenInExportApi: null,
         importOriginalSelection: null,
         folder: null,
+        ownerContentLink: null,//when "for this page" this one is populated
         iconClass: "epi-iconDownload",
         _onModelChange: function () {
 
@@ -98,11 +99,17 @@ define([
             }
 
             this.folder = this.firstModel.contentLink;
+            this.ownerContentLink = null;//reset
 
-            if (!this._isFolder(this.firstModel))//for images, not in use
-                this.folder = this.firstModel.parentLink;
+            if (this.firstModel.ownerContentLink)//if it is "for this page", this one should be used
+            {
+                this.ownerContentLink = this.firstModel.ownerContentLink;
+                this.folder = this.firstModel.ownerContentLink;
+            }
+            // if (!this._isFolder(this.firstModel))//for right click on images, not in use in this integration
+            //     this.folder = this.firstModel.parentLink;
 
-            //console.log(this.model)
+            // console.log("parent/owner", this.firstModel.contentLink, this.firstModel.ownerContentLink)
 
             if (!this.model) {
                 return;
@@ -169,11 +176,29 @@ define([
                     xhr.get(this.store.target + 'importdocument?parent=' + this.folder + '&url=' + encodeURIComponent(firstPart) + '&adminUrl=' + encodeURIComponent(document.location.href), {
                         handleAs: 'json'
                     }).then(lang.hitch(this, function (data) {
-                            topic.publish("/epi/cms/upload", data);
-                        }), lang.hitch(this, function (err) {
-                            alert("Couldn't import: " + err);
-                            console.error("Couldn't import: " + err);
-                        }));
+                        topic.publish("/epi/cms/upload", data);
+
+                        if (this.ownerContentLink) {//we need to update for this page, else it will not show the image from newly created asset folder
+
+                            // Force reload even if it's the same content by using topic.publish
+                            // with forceReload flag
+                            topic.publish("epi/shell/context/request", {
+                                uri: "epi.cms.contentdata:///" + this.ownerContentLink,
+                                sender: this,
+                                forceReload: true
+                            });
+
+                            // Alternative: Add timestamp to force hash change even for same content
+                            // This ensures the context change is triggered even if the content link is the same
+                            var timestamp = new Date().getTime();
+                            window.location.hash = "context=epi.cms.contentdata:///" + this.ownerContentLink + "&_t=" + timestamp;
+                        }
+
+
+                    }), lang.hitch(this, function (err) {
+                        alert("Couldn't import: " + err);
+                        console.error("Couldn't import: " + err);
+                    }));
 
 
                     this.closeWindow();
@@ -188,7 +213,6 @@ define([
 
                 var imageData = JSON.parse(firstPart);
 
-
                 xhr.post(this.store.target + 'import?parent=' + this.folder + '&adminUrl=' + encodeURIComponent(document.location.href), {
                     handleAs: 'json',
                     preventCache: true,
@@ -196,6 +220,24 @@ define([
                     headers: { "Content-Type": "application/json" }
                 }).then(lang.hitch(this, function (data) {
                     topic.publish("/epi/cms/upload", data);
+
+                    if (this.ownerContentLink) {//we need to update for this page, else it will not show the image from newly created asset folder
+
+                        // Force reload even if it's the same content by using topic.publish
+                        // with forceReload flag
+                        topic.publish("epi/shell/context/request", {
+                            uri: "epi.cms.contentdata:///" + this.ownerContentLink,
+                            sender: this,
+                            forceReload: true
+                        });
+
+                        // Alternative: Add timestamp to force hash change even for same content
+                        // This ensures the context change is triggered even if the content link is the same
+                        var timestamp = new Date().getTime();
+                        window.location.hash = "context=epi.cms.contentdata:///" + this.ownerContentLink + "&_t=" + timestamp;
+                    }
+
+
                 }), lang.hitch(this, function (err) {
                     alert("Couldn't import: " + err);
                     console.error("Couldn't import: " + err);
@@ -207,7 +249,7 @@ define([
             } catch (error) {
                 console.error("Error AssetPane ImageSelector onMessageReceived: " + error);
             }
-        },              
+        },
 
         openWindow: function (evt) {
             try {
