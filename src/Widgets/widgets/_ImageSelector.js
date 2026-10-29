@@ -1,22 +1,22 @@
 define([
-        "dojo/_base/array",
-        "dojo/_base/connect",
-        "dojo/_base/declare",
-        "dojo/_base/lang",
-        "dojo/when",
-        "dojo/on",
+    "dojo/_base/array",
+    "dojo/_base/connect",
+    "dojo/_base/declare",
+    "dojo/_base/lang",
+    "dojo/when",
+    "dojo/on",
 
-        "dijit/_WidgetBase",
-        "dijit/_TemplatedMixin",
-        "dijit/_WidgetsInTemplateMixin",
-        "dijit/_OnDijitClickMixin",
+    "dijit/_WidgetBase",
+    "dijit/_TemplatedMixin",
+    "dijit/_WidgetsInTemplateMixin",
+    "dijit/_OnDijitClickMixin",
 
-        "epi/shell/request/xhr",
-        "epi/shell/widget/_ValueRequiredMixin",
-        "epi-cms/widget/_HasChildDialogMixin",
+    "epi/shell/request/xhr",
+    "epi/shell/widget/_ValueRequiredMixin",
+    "epi-cms/widget/_HasChildDialogMixin",
 
-        "epi/epi",
-        "epi/dependency"
+    "epi/epi",
+    "epi/dependency"
 ],
     function (
         array,
@@ -102,7 +102,7 @@ define([
 
                     if (this.selectCurrentImage && this.currentImage != null && this.currentImage.url) {
                         ifrmUrl += "&IMAGE=" + encodeURI(this.currentImage.url);
-                    }                       
+                    }
 
                     ifrm.setAttribute("src", ifrmUrl);
                     ifrm.setAttribute("id", this.iframeId);
@@ -140,7 +140,7 @@ define([
             },
 
             onMessageReceived: function (event) {
-                try { 
+                try {
                     this.setBasicImage(event.data);
 
                     xhr.get(this.store.target + '?permalink=' + encodeURIComponent(this.currentImage.url), {
@@ -190,7 +190,7 @@ define([
                 var requiredFields = ['altText', 'categories', 'credits', 'description', 'documentinfo', 'rights', 'tags', 'title'];
                 return requiredFields.some(function (field) {
                     return textData[field] !== null && textData[field] !== undefined;
-                }); 
+                });
             },
 
             setBasicImage: function (data) {
@@ -201,7 +201,9 @@ define([
                     if (!this.hasValidTextData(textData) && this.fallbackLanguage && imageData.text[this.fallbackLanguage]) {
                         textData = imageData.text[this.fallbackLanguage];
                         console.log("Using fallback language for image text data: " + this.fallbackLanguage);
-                    } 
+                    }
+
+                    window.console && console.log(imageData);
 
                     var imageProfileData = null;
                     if (imageData.profile) {
@@ -232,6 +234,7 @@ define([
                         this.currentImage.focalPoint = imageData.focalPoint;
                         this.currentImage.rights = textData.rights;
                         this.currentImage.tags = textData.tags;
+                        this.currentImage.categories = textData.categories;
                         this.currentImage.documentinfo = textData.documentinfo;
                     }
 

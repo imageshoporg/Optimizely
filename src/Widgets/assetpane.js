@@ -161,6 +161,16 @@ define([
         onImageSelected: function (image) {
         },
 
+        _forceReloadOwnerContent: function () {
+            if (this.ownerContentLink) {
+                topic.publish("/epi/shell/context/request", {
+                    uri: "epi.cms.contentdata:///" + this.ownerContentLink,
+                    sender: this,
+                    forceReload: true
+                });
+            }
+        },
+
         onMessageReceived: function (event) {
             try {
                 // Check if event.data is a string
@@ -177,24 +187,7 @@ define([
                         handleAs: 'json'
                     }).then(lang.hitch(this, function (data) {
                         topic.publish("/epi/cms/upload", data);
-
-                        if (this.ownerContentLink) {//we need to update for this page, else it will not show the image from newly created asset folder
-
-                            // Force reload even if it's the same content by using topic.publish
-                            // with forceReload flag
-                            topic.publish("epi/shell/context/request", {
-                                uri: "epi.cms.contentdata:///" + this.ownerContentLink,
-                                sender: this,
-                                forceReload: true
-                            });
-
-                            // Alternative: Add timestamp to force hash change even for same content
-                            // This ensures the context change is triggered even if the content link is the same
-                            var timestamp = new Date().getTime();
-                            window.location.hash = "context=epi.cms.contentdata:///" + this.ownerContentLink + "&_t=" + timestamp;
-                        }
-
-
+                        this._forceReloadOwnerContent();
                     }), lang.hitch(this, function (err) {
                         alert("Couldn't import: " + err);
                         console.error("Couldn't import: " + err);
@@ -220,24 +213,7 @@ define([
                     headers: { "Content-Type": "application/json" }
                 }).then(lang.hitch(this, function (data) {
                     topic.publish("/epi/cms/upload", data);
-
-                    if (this.ownerContentLink) {//we need to update for this page, else it will not show the image from newly created asset folder
-
-                        // Force reload even if it's the same content by using topic.publish
-                        // with forceReload flag
-                        topic.publish("epi/shell/context/request", {
-                            uri: "epi.cms.contentdata:///" + this.ownerContentLink,
-                            sender: this,
-                            forceReload: true
-                        });
-
-                        // Alternative: Add timestamp to force hash change even for same content
-                        // This ensures the context change is triggered even if the content link is the same
-                        var timestamp = new Date().getTime();
-                        window.location.hash = "context=epi.cms.contentdata:///" + this.ownerContentLink + "&_t=" + timestamp;
-                    }
-
-
+                    this._forceReloadOwnerContent();
                 }), lang.hitch(this, function (err) {
                     alert("Couldn't import: " + err);
                     console.error("Couldn't import: " + err);

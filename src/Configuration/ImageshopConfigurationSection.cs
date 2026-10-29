@@ -45,19 +45,20 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                 {
                     BaseUrl = settingsSection["baseUrl"] ?? "https://client.imageshop.no/InsertImage2.aspx",
                     Token = settingsSection["token"],
-                    ShowSizeDialog = bool.Parse(settingsSection["showSizeDialog"]),
-                    ShowCropDialog = bool.Parse(settingsSection["showCropDialog"]),
-                    EnableDownload = bool.Parse(settingsSection["enableDownload"]),
-                    EnableDownloadDocuments = bool.Parse(settingsSection["enableDownloadDocuments"]),
-                    FreeCrop = bool.Parse(settingsSection["freeCrop"]),
+                    ShowSizeDialog = bool.Parse(settingsSection["showSizeDialog"] ?? "true"),
+                    ShowCropDialog = bool.Parse(settingsSection["showCropDialog"] ?? "true"),
+                    EnableDownload = bool.Parse(settingsSection["enableDownload"] ?? "false"),
+                    EnableDownloadDocuments = bool.Parse(settingsSection["enableDownloadDocuments"] ?? "false"),
+                    FreeCrop = bool.Parse(settingsSection["freeCrop"] ?? "false"),
                     InterfaceName = settingsSection["interfaceName"],
                     ImageDownloadAppend = settingsSection["imageDownloadAppend"],
                     DocumentPrefix = settingsSection["documentPrefix"],
                     Culture = settingsSection["culture"],
+                    IncludeCategories = bool.Parse(settingsSection["includeCategories"] ?? "false"),
                     FallbackLanguage = settingsSection["fallbackLanguage"] ?? "nb",
                     ProfileID = settingsSection["profileID"],
                     WebServiceUrl = settingsSection["webServiceUrl"] ?? "https://webservices.imageshop.no/v4.asmx",
-                    InitializeTinyMCEPlugin = bool.Parse(settingsSection["initializeTinyMCEPlugin"]),
+                    InitializeTinyMCEPlugin = bool.Parse(settingsSection["initializeTinyMCEPlugin"] ?? "false"),
                     SizePresets = GetListOfSizePresets(settingsSection["sizePresets"] ?? string.Empty)
                 };
 
