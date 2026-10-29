@@ -42,5 +42,7 @@ namespace Imageshop.Optimizely.Plugin.Attributes
 
         [Description("Name of the crop to use for the image. Default is empty string.")]
         public string CropName { get; set; }
+        [Description("Show categories in JSON format. Default is false.")]
+        public bool IncludeCategories { get; set; }
     }
 }

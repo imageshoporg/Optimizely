@@ -18,6 +18,7 @@ namespace Imageshop.Optimizely.Plugin
         public virtual string Url { get; set; }
         public virtual string Name { get; set; }
         public virtual string Credits { get; set; }
+        public virtual ImageshopCategory[] Categories { get; set; }
         public virtual string Description { get; set; }
         public virtual string Comment { get; set; }
         public virtual string Rights { get; set; }

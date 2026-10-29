@@ -54,6 +54,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
         /// </summary>
         public string ImageDownloadAppend { get; set; }
         public bool EnableDownloadDocuments { get; set; }
+        public bool IncludeCategories { get; set; }
 
         public static class UIHint
         {

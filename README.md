@@ -80,6 +80,7 @@ After the package is successfully installed you need to add your access token to
             "profileId": "",
             "showSizeDialog": "true",
             "showCropDialog": "true",
+            "includeCategories": true,//include in metadata, can affect performance 
             "freeCrop": "true",
             "initializeTinyMCEPlugin": "true",
             //starting from version 1.4
@@ -189,7 +190,10 @@ for custom TinyMCE configurations use .AddImageshopToTinyMCE() to TinyMceSetting
 | fallbackLanguage        | string     | default nb, if textdata is null or empty use this language, if you are on swedish page in Optimizely, an import data, but no swedish metadata exists, use this instead
 |        
 | showSizeDialog          | true/false | Indicates whether the size dialogue should be shown. Default is true.                                                                |
-| showCropDialog          | true/false | Indicates whether the crop dialogue should be show. Default is true.                                                                 |
+| freeCrop                | true/false | Indicates whether free cropping is enabled when selecting an image. Default is true.                                                                |
+| showCropDialog          | true/false | Indicates whether the crop dialogue should be show. Default is false.                                                                |
+| includeCategories       | true/false | Includes categories in metadata. Default is false.  
+                                                                  |
 | initializeTinyMCEPlugin | true/false | Indicates whether the tinymce plugin should be initialized.                                                                          |
 | sizePresets             | string     | String in the format <Size name 1>;<width1>x<height1>:<Size name 2>;<width2>x<height2>... Predefined sizes the user can choose from. 
 |
@@ -212,8 +216,12 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 
 ![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
-## Changelog
+## Change log 
+- **v3.3.0.0** _(29.10.26)_: Add includeCategories to configuration section ImageshopOptimizelyPlugin in appsettings.json. This will include categories in metadata, but can affect performance.
+- **v3.2.1.0** _(07.10.26)_: bugfix when download to "for this page"
 - **v3.2.0.0** _(21.09.26)_: Targeting CMS 13 only, branching versioning. Feature: Fallback language metadata.
+- **v2.3.0.0** _(29.10.26)_: Add includeCategories to configuration section ImageshopOptimizelyPlugin in appsettings.json. This will include categories in metadata, but can affect performance.
+- **v2.2.1.0** _(07.10.26)_: bugfix when download to "for this page"
 - **v2.2.0.0** _(21.09.26)_: Targeting CMS 12 only, still .net8 but works with .net10. Feature: Fallback language metadata.
 - **v2.1.0.0** _(02.07.26)_: Save metadata documentinfo on image and video
 - **v2.0.0.0** _(05.04.26)_: Update for Optimizely CMS 13 .net10 compatibility together with CMS 12 .net8

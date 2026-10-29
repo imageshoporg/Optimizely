@@ -28,7 +28,7 @@
     //      "credits": "",
     //      "tags": " If_lifestyle_woman_man_ craftswoman_ craftsman_laptop_working",
     //      "altText": null,
-    //      "categories": [],
+    //      "categories":[{"id":3459,"name":"car","childrenCategories":[]},{"id":31600,"name":"Logo","childrenCategories":[{"id":31601,"name":"Optimera","childrenCategories":null},{"id":31602,"name":"Other brands","childrenCategories":null}]},{"id":73225,"name":"Design Editor Test","childrenCategories":[{"id":73226,"name":"Sub category 1","childrenCategories":null},{"id":73227,"name":"Sub category 2","childrenCategories":null}]}]
     //      "documentinfo": [
     //        {
     //          "DocumentInfoTypeId": 464,

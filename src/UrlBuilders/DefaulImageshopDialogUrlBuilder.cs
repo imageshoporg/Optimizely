@@ -44,6 +44,7 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
             string documentPrefix = ImageshopConfigurationSection.Settings.DocumentPrefix!;
             string profileId = ImageshopConfigurationSection.Settings.ProfileID!;
             bool showSizeDialog = ImageshopConfigurationSection.Settings.ShowSizeDialog;
+            bool IncludeCategories = ImageshopConfigurationSection.Settings.IncludeCategories;
             bool showCropDialog = ImageshopConfigurationSection.Settings.ShowCropDialog;
             bool freeCropDialog = ImageshopConfigurationSection.Settings.FreeCrop;
             string sizePresets = ImageshopConfigurationSection.Settings.FormattedSizePresets;
@@ -71,11 +72,12 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
                     profileId = configurationAttribute.ProfileID;
                 }
 
-                showSizeDialog = configurationAttribute.ShowSizeDialog;
+                IncludeCategories = configurationAttribute.IncludeCategories;
                 showCropDialog = configurationAttribute.ShowCropDialog;
                 freeCropDialog = configurationAttribute.FreeCrop;
             }
 
+            query.Add("SHOWCATEGORIESINJSON", IncludeCategories.ToString().ToLowerInvariant());
             query.Add("SHOWSIZEDIALOGUE", showSizeDialog.ToString().ToLowerInvariant());
             query.Add("SHOWCROPDIALOGUE", showCropDialog.ToString().ToLowerInvariant());
             query.Add("FREECROP", freeCropDialog.ToString().ToLowerInvariant());
