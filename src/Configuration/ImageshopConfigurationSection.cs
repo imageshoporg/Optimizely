@@ -6,6 +6,12 @@ namespace Imageshop.Optimizely.Plugin.Configuration
 {
     /// <summary>
     /// Class for receiving settings read from the appsettings.json file.
+    /// Configuration files are loaded in the following priority order (lowest to highest):
+    /// 1. appSettings.json
+    /// 2. appsettings.json
+    /// 3. appSettings.{Environment}.json
+    /// 4. appsettings.{Environment}.json
+    /// 5. Environment variables (highest priority)
     /// </summary>
     public static class ImageshopConfigurationSection
     {
@@ -25,6 +31,11 @@ namespace Imageshop.Optimizely.Plugin.Configuration
             var environment = GetEnvironmentName();
             var builder = new ConfigurationBuilder();
 
+            // Load base configuration files first (lowest priority)
+            builder.AddJsonFile("appSettings.json", optional: true);
+            builder.AddJsonFile("appsettings.json", optional: true);
+
+            // Load environment-specific files (higher priority)
             if (!string.IsNullOrEmpty(environment))
             {
                 //Supports both appSettings and appsettings (case sensitive on linux):
@@ -32,8 +43,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                 builder.AddJsonFile($"appsettings.{environment}.json", optional: true);
             }
 
-            builder.AddJsonFile("appSettings.json", optional: true);
-            builder.AddJsonFile("appsettings.json", optional: true);
+            // Environment variables have the highest priority
             builder.AddEnvironmentVariables();
 
             var configuration = builder.Build();
@@ -69,7 +79,7 @@ namespace Imageshop.Optimizely.Plugin.Configuration
                 string filesChecked = "appSettings.json, appsettings.json";
                 if (!string.IsNullOrEmpty(environment))
                 {
-                    filesChecked = $"appSettings.{environment}.json, appsettings.{environment}.json, " + filesChecked;
+                    filesChecked = filesChecked + $", appSettings.{environment}.json, appsettings.{environment}.json";
                 }
 
                 throw new Exception($"Error: Could not find the ImageshopOptimizelyPlugin settings section. Tried in the following order: {filesChecked}, please check your configuration.");

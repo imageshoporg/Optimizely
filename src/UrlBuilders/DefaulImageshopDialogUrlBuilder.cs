@@ -44,7 +44,7 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
             string documentPrefix = ImageshopConfigurationSection.Settings.DocumentPrefix!;
             string profileId = ImageshopConfigurationSection.Settings.ProfileID!;
             bool showSizeDialog = ImageshopConfigurationSection.Settings.ShowSizeDialog;
-            bool IncludeCategories = ImageshopConfigurationSection.Settings.IncludeCategories;
+            bool includeCategories = ImageshopConfigurationSection.Settings.IncludeCategories;
             bool showCropDialog = ImageshopConfigurationSection.Settings.ShowCropDialog;
             bool freeCropDialog = ImageshopConfigurationSection.Settings.FreeCrop;
             string sizePresets = ImageshopConfigurationSection.Settings.FormattedSizePresets;
@@ -54,7 +54,7 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
             query.Add("IFRAMEINSERT", "true");
             query.Add("IMAGESHOPTOKEN", token);
 
-            // Read settings from attribute.
+            // Read settings from attribute only if they were explicitly set.
             if (configurationAttribute != null)
             {
                 if (string.IsNullOrWhiteSpace(configurationAttribute.InterfaceName) == false)
@@ -72,12 +72,29 @@ namespace Imageshop.Optimizely.Plugin.UrlBuilders
                     profileId = configurationAttribute.ProfileID;
                 }
 
-                IncludeCategories = configurationAttribute.IncludeCategories;
-                showCropDialog = configurationAttribute.ShowCropDialog;
-                freeCropDialog = configurationAttribute.FreeCrop;
+                // Only override global settings if the attribute property was explicitly assigned.
+                if (configurationAttribute.IsPropertyExplicitlySet(nameof(ImageshopSettingsAttribute.IncludeCategories)))
+                {
+                    includeCategories = configurationAttribute.IncludeCategories;
+                }
+
+                if (configurationAttribute.IsPropertyExplicitlySet(nameof(ImageshopSettingsAttribute.ShowCropDialog)))
+                {
+                    showCropDialog = configurationAttribute.ShowCropDialog;
+                }
+
+                if (configurationAttribute.IsPropertyExplicitlySet(nameof(ImageshopSettingsAttribute.FreeCrop)))
+                {
+                    freeCropDialog = configurationAttribute.FreeCrop;
+                }
+
+                if (configurationAttribute.IsPropertyExplicitlySet(nameof(ImageshopSettingsAttribute.ShowSizeDialog)))
+                {
+                    showSizeDialog = configurationAttribute.ShowSizeDialog;
+                }
             }
 
-            query.Add("SHOWCATEGORIESINJSON", IncludeCategories.ToString().ToLowerInvariant());
+            query.Add("SHOWCATEGORIESINJSON", includeCategories.ToString().ToLowerInvariant());
             query.Add("SHOWSIZEDIALOGUE", showSizeDialog.ToString().ToLowerInvariant());
             query.Add("SHOWCROPDIALOGUE", showCropDialog.ToString().ToLowerInvariant());
             query.Add("FREECROP", freeCropDialog.ToString().ToLowerInvariant());

@@ -215,9 +215,11 @@ If you encounter any bugs or have any feature requests, please feel free to crea
 ![ScreenShot](https://raw.githubusercontent.com/imageshoporg/Optimizely/master/docs/imageshop-tinymce-plugin.png)
 
 ## Change log 
+- **v3.4.0** _(15.11.26)_: Fix configuration precedence so environment-specific settings override base appSettings files, and ensure boolean attribute overrides only apply when explicitly set.
 - **v3.3.0.0** _(29.10.26)_: Add includeCategories to configuration section ImageshopOptimizelyPlugin in appsettings.json. This will include categories in metadata, but can affect performance.
 - **v3.2.1.0** _(07.10.26)_: bugfix when download to "for this page"
 - **v3.2.0.0** _(21.09.26)_: Targeting CMS 13 only, branching versioning. Feature: Fallback language metadata.
+- **v2.4.0** _(15.11.26)_: Fix configuration precedence so environment-specific settings override base appSettings files, and ensure boolean attribute overrides only apply when explicitly set.
 - **v2.3.0.0** _(29.10.26)_: Add includeCategories to configuration section ImageshopOptimizelyPlugin in appsettings.json. This will include categories in metadata, but can affect performance.
 - **v2.2.1.0** _(07.10.26)_: bugfix when download to "for this page"
 - **v2.2.0.0** _(21.09.26)_: Targeting CMS 12 only, still .net8 but works with .net10. Feature: Fallback language metadata.
